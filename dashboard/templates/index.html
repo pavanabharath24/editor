@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cash & Crown Studio | Production & Video Dashboard</title>
+  <title>Cash & Crown Studio | Live Production Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -30,7 +30,6 @@
       flex-direction: column;
     }
 
-    /* Header */
     header {
       background-color: rgba(18, 18, 22, 0.85);
       backdrop-filter: blur(12px);
@@ -105,7 +104,6 @@
       main { grid-template-columns: 1fr; }
     }
 
-    /* Video Player Card */
     .player-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -135,9 +133,6 @@
       background: #000;
       aspect-ratio: 16 / 9;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
     }
 
@@ -148,15 +143,32 @@
       background: #000;
     }
 
-    .video-placeholder {
+    .controls-overlay {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 1rem;
-      color: var(--text-muted);
+      padding: 0.85rem 1.75rem;
+      background: #111115;
+      border-top: 1px solid var(--card-border);
+      align-items: center;
     }
 
-    /* Progress Section */
+    .btn-sm {
+      padding: 0.45rem 0.95rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 1px solid var(--card-border);
+      background: #1c1c22;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-sm:hover {
+      background: #272730;
+      border-color: var(--gold);
+    }
+
     .progress-section {
       padding: 1.5rem 1.75rem;
       background: rgba(20, 20, 24, 0.5);
@@ -211,7 +223,6 @@
       color: var(--text-muted);
     }
 
-    /* Controls Panel */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -275,7 +286,6 @@
       border-color: #3f3f46;
     }
 
-    /* Scene list */
     .scene-list {
       display: flex;
       flex-direction: column;
@@ -318,6 +328,17 @@
       color: var(--text-muted);
       font-size: 0.75rem;
     }
+
+    .guide-banner {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--cyan);
+      margin-bottom: 1.25rem;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -337,7 +358,6 @@
   </header>
 
   <main>
-    <!-- Left Column: Video & Progress -->
     <div>
       <div class="player-card">
         <div class="player-header">
@@ -352,7 +372,14 @@
           </video>
         </div>
 
-        <!-- Render Progress Tracker -->
+        <div class="controls-overlay">
+          <button class="btn-sm" onclick="reloadVideo()">🔄 Force Reload Video</button>
+          <button class="btn-sm" onclick="togglePlay()">⏯ Play / Pause</button>
+          <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: auto;">
+            ⚡ Rich Visual Cutouts & Financial Infographics Active
+          </span>
+        </div>
+
         <div class="progress-section">
           <div class="progress-header">
             <span class="progress-status" id="statusText">Checking Engine Status...</span>
@@ -372,14 +399,12 @@
       </div>
     </div>
 
-    <!-- Right Column: Control & Chapter Blueprint -->
     <div class="sidebar">
-      <!-- Action Card -->
       <div class="card">
-        <div class="card-title">⚡ Render Controls</div>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-          Trigger full 5-minute video compilation locally or dispatch to Kaggle Cloud GPU.
-        </p>
+        <div class="card-title">⚡ How to Use This Studio</div>
+        <div class="guide-banner">
+          💡 <strong>Tip</strong>: Click <strong>"Force Reload Video"</strong> to see the latest rendered cutouts (Arthur Morgan, GTA V, Donut & Bar Charts).
+        </div>
 
         <button class="btn btn-gold" id="btnStartRender" onclick="startRender()">
           ▶ Start Full Render (Day 1)
@@ -390,11 +415,9 @@
         </button>
       </div>
 
-      <!-- Chapter Outline -->
       <div class="card" style="flex: 1;">
         <div class="card-title">📜 12-Scene Timeline</div>
         <div class="scene-list" id="sceneList">
-          <!-- Populated dynamically via JS -->
         </div>
       </div>
     </div>
@@ -403,44 +426,43 @@
   <script>
     let isRendering = false;
 
+    function reloadVideo() {
+      const player = document.getElementById('videoPlayer');
+      player.src = '/api/video?t=' + Date.now();
+      player.play();
+    }
+
+    function togglePlay() {
+      const player = document.getElementById('videoPlayer');
+      if (player.paused) player.play();
+      else player.pause();
+    }
+
     async function fetchStatus() {
       try {
         const res = await fetch('/api/status');
         const data = await res.json();
 
-        // Update progress bar
         const pct = data.progress?.percent || (data.video_ready ? 100 : 0);
         document.getElementById('progressBar').style.width = pct + '%';
         document.getElementById('pctText').innerText = Math.round(pct) + '%';
         document.getElementById('statusText').innerText = data.progress?.status || (data.video_ready ? 'Video Ready' : 'Idle');
 
-        // Badge
         const badge = document.getElementById('renderBadge');
         if (data.rendering) {
           badge.innerText = 'Rendering';
           badge.style.color = '#eab308';
           badge.style.borderColor = '#eab308';
         } else if (data.video_ready) {
-          badge.innerText = 'Completed';
+          badge.innerText = 'Ready';
           badge.style.color = '#10b981';
           badge.style.borderColor = '#10b981';
-        } else {
-          badge.innerText = 'Ready';
         }
 
-        // Stats
         if (data.progress) {
           document.getElementById('sceneStats').innerText = `Scene: ${data.progress.current_scene || 0} / ${data.progress.total_scenes || 12}`;
           document.getElementById('frameStats').innerText = `Frames: ${data.progress.current_frame || 0} / ${data.progress.total_frames || 0}`;
           document.getElementById('etaStats').innerText = data.progress.eta_seconds ? `ETA: ${data.progress.eta_seconds}s` : (pct >= 100 ? 'Ready' : '--');
-        }
-
-        // Reload video once finished
-        if (data.video_ready && isRendering && !data.rendering) {
-          isRendering = false;
-          const player = document.getElementById('videoPlayer');
-          player.src = '/api/video?t=' + Date.now();
-          player.play();
         }
       } catch (err) {
         console.error('Status fetch error:', err);
@@ -462,8 +484,8 @@
               <span>[${String(scene.chapter_num).padStart(2, '0')}] ${scene.chapter_title}</span>
               <span>${scene.duration}s</span>
             </div>
-            <div class="scene-item-title">${scene.stat_value || scene.type.toUpperCase()}</div>
-            <div class="scene-item-meta">${scene.stat_label || ''}</div>
+            <div class="scene-item-title">${scene.stat_value || (scene.type === 'image_hero' ? '🖼 GAME / CHARACTER ART' : (scene.type.startsWith('diagram') ? '📊 ANIMATED DIAGRAM' : scene.type.toUpperCase()))}</div>
+            <div class="scene-item-meta">${scene.stat_label || (scene.image_asset || '')}</div>
           `;
           container.appendChild(div);
         });
@@ -498,7 +520,6 @@
       }
     }
 
-    // Init
     loadTimeline();
     fetchStatus();
     setInterval(fetchStatus, 3000);

@@ -1,0 +1,49 @@
+{
+  "title": "Day 1 Quick Showcase (Arthur, Donut & Bars)",
+  "resolution": [1920, 1080],
+  "fps": 30,
+  "scenes": [
+    {
+      "chapter_num": 1,
+      "chapter_title": "THE 13-YEAR GAP",
+      "type": "image_hero",
+      "image_asset": "assets/gta5_cover_faded.png",
+      "duration": 4.0,
+      "text": [
+        {"word": "SEPTEMBER 2013: ", "color": "white"},
+        {"word": "GTA V ARRIVES", "color": "gold"}
+      ]
+    },
+    {
+      "chapter_num": 4,
+      "chapter_title": "BEYOND GTA",
+      "type": "image_hero",
+      "image_asset": "assets/rdr2_arthur_faded.png",
+      "duration": 4.0,
+      "text": [
+        {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
+        {"word": "$725M IN 3 DAYS", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 6,
+      "chapter_title": "THE BUSINESS EMPIRE",
+      "type": "diagram_donut",
+      "duration": 4.5,
+      "text": [
+        {"word": "78% RECURRENT SPENDING: ", "color": "gold"},
+        {"word": "THE EMPIRE MODEL", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 6,
+      "chapter_title": "THE BUSINESS EMPIRE",
+      "type": "diagram_growth",
+      "duration": 4.5,
+      "text": [
+        {"word": "$800M DAY ONE; ", "color": "gold"},
+        {"word": "$1 BILLION IN 72 HOURS", "color": "cyan"}
+      ]
+    }
+  ]
+}
