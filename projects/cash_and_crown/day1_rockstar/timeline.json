@@ -1,7 +1,10 @@
 {
   "title": "Why Rockstar Made the World Wait 13 Years for GTA VI",
   "project_id": "day1_rockstar",
-  "resolution": [1920, 1080],
+  "resolution": [
+    1920,
+    1080
+  ],
   "fps": 60,
   "scenes": [
     {
@@ -10,12 +13,21 @@
       "chapter_title": "THE 13-YEAR GAP",
       "type": "gameplay_center",
       "gameplay_clip": "assets/clips/gta5_clean.mp4",
-      "gameplay_logo": "assets/logo_gta_online.png",
+      "gameplay_logo": "assets/logo_gta5.png",
       "duration": 12.0,
       "text": [
-        {"word": "SEPTEMBER 2013: ", "color": "white"},
-        {"word": "THE WORLD FELL IN LOVE ", "color": "gold"},
-        {"word": "WITH GTA V", "color": "cyan"}
+        {
+          "word": "SEPTEMBER 2013: ",
+          "color": "white"
+        },
+        {
+          "word": "THE WORLD FELL IN LOVE ",
+          "color": "gold"
+        },
+        {
+          "word": "WITH GTA V",
+          "color": "cyan"
+        }
       ]
     },
     {
@@ -28,8 +40,14 @@
       "stat_label": "A RELEASE GAP, NOT DEVELOPMENT TIME",
       "stat_subtext": "Confirmed Feb 2022: 'Development was well underway' after two delays",
       "text": [
-        {"word": "PATIENCE AND POLISH: ", "color": "gold"},
-        {"word": "WHY ROCKSTAR TAKES ITS TIME", "color": "white"}
+        {
+          "word": "PATIENCE AND POLISH: ",
+          "color": "gold"
+        },
+        {
+          "word": "WHY ROCKSTAR TAKES ITS TIME",
+          "color": "white"
+        }
       ]
     },
     {
@@ -40,9 +58,18 @@
       "image_asset": "assets/rockstar_logo.png",
       "duration": 20.0,
       "text": [
-        {"word": "1988 DUNDEE: ", "color": "cyan"},
-        {"word": "FROM DMA DESIGN ", "color": "white"},
-        {"word": "TO ROCKSTAR GAMES", "color": "gold"}
+        {
+          "word": "1988 DUNDEE: ",
+          "color": "cyan"
+        },
+        {
+          "word": "FROM DMA DESIGN ",
+          "color": "white"
+        },
+        {
+          "word": "TO ROCKSTAR GAMES",
+          "color": "gold"
+        }
       ]
     },
     {
@@ -53,9 +80,18 @@
       "image_asset": "assets/take_two_logo.png",
       "duration": 20.0,
       "text": [
-        {"word": "TAKE-TWO ACQUISITION: ", "color": "white"},
-        {"word": "SAM & DAN HOUSER ", "color": "gold"},
-        {"word": "FOUND ROCKSTAR", "color": "white"}
+        {
+          "word": "TAKE-TWO ACQUISITION: ",
+          "color": "white"
+        },
+        {
+          "word": "SAM & DAN HOUSER ",
+          "color": "gold"
+        },
+        {
+          "word": "FOUND ROCKSTAR",
+          "color": "white"
+        }
       ]
     },
     {
@@ -65,10 +101,16 @@
       "type": "gameplay_center",
       "gameplay_clip": "assets/clips/gta_vice_city_clean.mp4",
       "gameplay_logo": "assets/logo_gtavc.png",
-      "duration": 15.0,
+      "duration": 30.0,
       "text": [
-        {"word": "VICE CITY (2002): ", "color": "gold"},
-        {"word": "THE NEON 3D MASTERPIECE", "color": "cyan"}
+        {
+          "word": "VICE CITY (2002): ",
+          "color": "gold"
+        },
+        {
+          "word": "THE NEON 3D MASTERPIECE",
+          "color": "cyan"
+        }
       ]
     },
     {
@@ -78,10 +120,16 @@
       "type": "gameplay_center",
       "gameplay_clip": "assets/clips/gta_san_andreas_clean.mp4",
       "gameplay_logo": "assets/logo_gtasa.png",
-      "duration": 15.0,
+      "duration": 22.0,
       "text": [
-        {"word": "SAN ANDREAS (2004): ", "color": "gold"},
-        {"word": "AN ENTIRE LIVING STATE", "color": "cyan"}
+        {
+          "word": "SAN ANDREAS (2004): ",
+          "color": "gold"
+        },
+        {
+          "word": "AN ENTIRE LIVING STATE",
+          "color": "cyan"
+        }
       ]
     },
     {
@@ -91,11 +139,20 @@
       "type": "gameplay_center",
       "gameplay_clip": "assets/clips/rdr2_clean.mp4",
       "gameplay_logo": "assets/logo_rdr2.png",
-      "duration": 20.0,
+      "duration": 34.0,
       "text": [
-        {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
-        {"word": "$725M IN 3 DAYS ", "color": "cyan"},
-        {"word": "(85M COPIES)", "color": "white"}
+        {
+          "word": "RED DEAD REDEMPTION 2: ",
+          "color": "gold"
+        },
+        {
+          "word": "$725M IN 3 DAYS ",
+          "color": "cyan"
+        },
+        {
+          "word": "(85M COPIES)",
+          "color": "white"
+        }
       ]
     },
     {
@@ -106,8 +163,14 @@
       "image_asset": "assets/bully_hd.jpg",
       "duration": 18.0,
       "text": [
-        {"word": "BULLY & MANHUNT: ", "color": "white"},
-        {"word": "HEAT OF CONTROVERSY", "color": "gold"}
+        {
+          "word": "BULLY & MANHUNT: ",
+          "color": "white"
+        },
+        {
+          "word": "HEAT OF CONTROVERSY",
+          "color": "gold"
+        }
       ]
     },
     {
@@ -117,8 +180,14 @@
       "type": "diagram_risk",
       "duration": 22.0,
       "text": [
-        {"word": "CANCELLATION, CONTROVERSY, ", "color": "gold"},
-        {"word": "AND TECHNICAL RISK", "color": "white"}
+        {
+          "word": "CANCELLATION, CONTROVERSY, ",
+          "color": "gold"
+        },
+        {
+          "word": "AND TECHNICAL RISK",
+          "color": "white"
+        }
       ]
     },
     {
@@ -128,8 +197,14 @@
       "type": "diagram_growth",
       "duration": 26.0,
       "text": [
-        {"word": "$800M ON DAY ONE; ", "color": "gold"},
-        {"word": "OVER $1 BILLION IN 3 DAYS", "color": "cyan"}
+        {
+          "word": "$800M ON DAY ONE; ",
+          "color": "gold"
+        },
+        {
+          "word": "OVER $1 BILLION IN 3 DAYS",
+          "color": "cyan"
+        }
       ]
     },
     {
@@ -139,8 +214,14 @@
       "type": "diagram_donut",
       "duration": 24.0,
       "text": [
-        {"word": "78% RECURRENT SPENDING: ", "color": "gold"},
-        {"word": "THE MODERN EMPIRE MODEL", "color": "cyan"}
+        {
+          "word": "78% RECURRENT SPENDING: ",
+          "color": "gold"
+        },
+        {
+          "word": "THE MODERN EMPIRE MODEL",
+          "color": "cyan"
+        }
       ]
     },
     {
@@ -153,8 +234,14 @@
       "stat_subtext": "Leonida & Vice City; Trailer 1 hit 90M views in 24 hours (Guinness Record)",
       "duration": 50.0,
       "text": [
-        {"word": "NOVEMBER 19, 2026: ", "color": "gold"},
-        {"word": "THE WORLD PREPARES FOR HISTORY", "color": "white"}
+        {
+          "word": "NOVEMBER 19, 2026: ",
+          "color": "gold"
+        },
+        {
+          "word": "THE WORLD PREPARES FOR HISTORY",
+          "color": "white"
+        }
       ]
     }
   ]
