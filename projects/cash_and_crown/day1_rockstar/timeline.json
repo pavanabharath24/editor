@@ -8,15 +8,13 @@
       "scene_id": 1,
       "chapter_num": 1,
       "chapter_title": "THE 13-YEAR GAP",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/gta5_cover_faded.png",
       "duration": 12.0,
-      "stat_value": "13 YEARS",
-      "stat_label": "THE LONGEST GAP IN GAMING HISTORY",
-      "stat_subtext": "September 2013 (GTA V) to November 19, 2026 (GTA VI)",
       "text": [
-        {"word": "SEPTEMBER 2013 ", "color": "white"},
-        {"word": "TO NOVEMBER 2026: ", "color": "gold"},
-        {"word": "THE 13-YEAR WAIT", "color": "cyan"}
+        {"word": "SEPTEMBER 2013: ", "color": "white"},
+        {"word": "THE WORLD FELL IN LOVE ", "color": "gold"},
+        {"word": "WITH GTA V", "color": "cyan"}
       ]
     },
     {
@@ -25,142 +23,120 @@
       "chapter_title": "THE 13-YEAR GAP",
       "type": "stat",
       "duration": 23.0,
-      "stat_value": "RELEASE GAP",
+      "stat_value": "13 YEARS",
       "stat_label": "A RELEASE GAP, NOT DEVELOPMENT TIME",
-      "stat_subtext": "Confirmed Feb 2022: 'Development was well underway'",
+      "stat_subtext": "Confirmed Feb 2022: 'Development was well underway' after two delays",
       "text": [
-        {"word": "FANS WAITED THROUGH ", "color": "white"},
-        {"word": "TWO DELAYS ", "color": "gold"},
-        {"word": "FOR MAXIMUM POLISH", "color": "white"}
+        {"word": "PATIENCE AND POLISH: ", "color": "gold"},
+        {"word": "WHY ROCKSTAR TAKES ITS TIME", "color": "white"}
       ]
     },
     {
       "scene_id": 3,
       "chapter_num": 2,
       "chapter_title": "DUNDEE TO ROCKSTAR",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/rockstar_logo.png",
       "duration": 20.0,
-      "stat_value": "1988: DUNDEE",
-      "stat_label": "DMA DESIGN FOUNDED BY DAVID JONES",
-      "stat_subtext": "From small Scottish studio to creators of Lemmings (1991)",
       "text": [
-        {"word": "HOW A SCOTTISH STUDIO ", "color": "cyan"},
-        {"word": "BUILT A GLOBAL EMPIRE", "color": "white"}
+        {"word": "1988 DUNDEE: ", "color": "cyan"},
+        {"word": "FROM DMA DESIGN ", "color": "white"},
+        {"word": "TO ROCKSTAR GAMES", "color": "gold"}
       ]
     },
     {
       "scene_id": 4,
       "chapter_num": 2,
       "chapter_title": "DUNDEE TO ROCKSTAR",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/take_two_logo.png",
       "duration": 20.0,
-      "stat_value": "JAN 1999",
-      "stat_label": "ROCKSTAR GAMES OFFICIALLY ANNOUNCED",
-      "stat_subtext": "Take-Two Interactive buys BMG Interactive assets for GTA",
       "text": [
-        {"word": "FOUNDED BY ", "color": "white"},
+        {"word": "TAKE-TWO ACQUISITION: ", "color": "white"},
         {"word": "SAM & DAN HOUSER ", "color": "gold"},
-        {"word": "UNDER TAKE-TWO", "color": "white"}
+        {"word": "FOUND ROCKSTAR", "color": "white"}
       ]
     },
     {
       "scene_id": 5,
       "chapter_num": 3,
       "chapter_title": "THE GTA EVOLUTION",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/gta_vice_city_hd.jpg",
       "duration": 30.0,
-      "stat_value": "2001: GTA III",
-      "stat_label": "THE 3D OPEN-WORLD REVOLUTION",
-      "stat_subtext": "Vice City (2002) -> San Andreas (2004) -> GTA IV (2008)",
       "text": [
-        {"word": "EVERY TITLE ", "color": "white"},
-        {"word": "EXPANDED THE HORIZON ", "color": "cyan"},
-        {"word": "OF FREEDOM", "color": "white"}
+        {"word": "VICE CITY & SAN ANDREAS: ", "color": "gold"},
+        {"word": "THE OPEN-WORLD REVOLUTION", "color": "cyan"}
       ]
     },
     {
       "scene_id": 6,
       "chapter_num": 3,
       "chapter_title": "THE GTA EVOLUTION",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/gta_san_andreas_hd.jpg",
       "duration": 22.0,
-      "stat_value": "SEPT 2013",
-      "stat_label": "GRAND THEFT AUTO V LAUNCHES",
-      "stat_subtext": "Followed by GTA Online two weeks later: the persistent world",
       "text": [
-        {"word": "EACH GAME GROWS BIGGER, ", "color": "gold"},
-        {"word": "AND GAPS GROW LONGER", "color": "white"}
+        {"word": "EACH TITLE GROWS BIGGER, ", "color": "white"},
+        {"word": "AND THE GAPS GROW WIDER", "color": "gold"}
       ]
     },
     {
       "scene_id": 7,
       "chapter_num": 4,
       "chapter_title": "BEYOND GTA",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/rdr2_arthur_faded.png",
       "duration": 34.0,
-      "stat_value": "$725,000,000+",
-      "stat_label": "RED DEAD REDEMPTION 2 (FIRST 3 DAYS)",
-      "stat_subtext": "Passed 85 Million Copies Worldwide; Proving dominance beyond GTA",
       "text": [
-        {"word": "BULLY, L.A. NOIRE, ", "color": "white"},
-        {"word": "MIDNIGHT CLUB, ", "color": "gold"},
-        {"word": "MAX PAYNE 3", "color": "cyan"}
+        {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
+        {"word": "$725M IN 3 DAYS ", "color": "cyan"},
+        {"word": "(85M COPIES)", "color": "white"}
       ]
     },
     {
       "scene_id": 8,
       "chapter_num": 5,
       "chapter_title": "FAILURES & CONTROVERSIES",
-      "type": "stat",
+      "type": "image_hero",
+      "image_asset": "assets/bully_hd.jpg",
       "duration": 18.0,
-      "stat_value": "AGENT (2009)",
-      "stat_label": "THE SPY GAME THAT DISAPPEARED",
-      "stat_subtext": "Cancelled project quietly scrubbed from website in 2021",
       "text": [
-        {"word": "A CANCELLED PROJECT ", "color": "gold"},
-        {"word": "WASTES YEARS OF EFFORT", "color": "white"}
+        {"word": "BULLY & MANHUNT: ", "color": "white"},
+        {"word": "HEAT OF CONTROVERSY", "color": "gold"}
       ]
     },
     {
       "scene_id": 9,
       "chapter_num": 5,
       "chapter_title": "FAILURES & CONTROVERSIES",
-      "type": "stat",
+      "type": "diagram_risk",
       "duration": 22.0,
-      "stat_value": "3 KINDS OF RISK",
-      "stat_label": "CANCELLATION, CONTROVERSY, TECHNICAL BUGS",
-      "stat_subtext": "GTA Trilogy 2021 launch bugs forced an apology & PC sales pause",
       "text": [
-        {"word": "EVEN INDUSTRY GIANTS ", "color": "cyan"},
-        {"word": "ARE NOT IMMUNE TO MISTAKES", "color": "white"}
+        {"word": "CANCELLATION, CONTROVERSY, ", "color": "gold"},
+        {"word": "AND TECHNICAL RISK", "color": "white"}
       ]
     },
     {
       "scene_id": 10,
       "chapter_num": 6,
       "chapter_title": "THE BUSINESS EMPIRE",
-      "type": "stat",
+      "type": "diagram_growth",
       "duration": 26.0,
-      "stat_value": "$1,000,000,000",
-      "stat_label": "RETAIL SALES IN JUST THREE DAYS (2013)",
-      "stat_subtext": "Over 230 Million Copies Sold Worldwide to date",
       "text": [
         {"word": "$800M ON DAY ONE; ", "color": "gold"},
-        {"word": "$1 BILLION IN 72 HOURS", "color": "cyan"}
+        {"word": "OVER $1 BILLION IN 3 DAYS", "color": "cyan"}
       ]
     },
     {
       "scene_id": 11,
       "chapter_num": 6,
       "chapter_title": "THE BUSINESS EMPIRE",
-      "type": "stat",
+      "type": "diagram_donut",
       "duration": 24.0,
-      "stat_value": "78% RECURRENT",
-      "stat_label": "TAKE-TWO RECURRENT CONSUMER SPENDING",
-      "stat_subtext": "Fiscal 2026: Shark Cards, DLC & GTA+ Subscriptions",
       "text": [
-        {"word": "A SALE HAPPENS ONCE; ", "color": "white"},
-        {"word": "ECOSYSTEM REVENUE LASTS FOREVER", "color": "gold"}
+        {"word": "78% RECURRENT SPENDING: ", "color": "gold"},
+        {"word": "THE MODERN EMPIRE MODEL", "color": "cyan"}
       ]
     },
     {
@@ -168,13 +144,13 @@
       "chapter_num": 7,
       "chapter_title": "LAUNCH DAY: GTA VI",
       "type": "stat",
-      "duration": 50.0,
       "stat_value": "$8.2 BILLION",
       "stat_label": "TAKE-TWO FISCAL 2027 BOOKINGS OUTLOOK",
       "stat_subtext": "Leonida & Vice City; Trailer 1 hit 90M views in 24 hours (Guinness Record)",
+      "duration": 50.0,
       "text": [
-        {"word": "THE WORLD DID NOT JUST WAIT. ", "color": "white"},
-        {"word": "THEY PREPARED FOR HISTORY.", "color": "gold"}
+        {"word": "NOVEMBER 19, 2026: ", "color": "gold"},
+        {"word": "THE WORLD PREPARES FOR HISTORY", "color": "white"}
       ]
     }
   ]

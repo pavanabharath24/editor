@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
 Cash & Crown / Document Video Engine - Video Timeline Builder & Renderer
-Reads scene timeline definition JSON and generates full 60fps MP4 video.
-Features live progress tracking file (.progress.json) for dashboard updates.
+Composes rich documentary scenes with:
+- Original game covers, characters & official press art (Rockstar Games, GTA V, Vice City, RDR2, etc.)
+- Dynamic financial infographic diagrams (Donut charts, revenue bar charts, risk matrices)
+- Smooth floating Ken Burns camera moves & drop-shadows
+- Live real-time dashboard progress tracking (.progress.json)
 """
 
 import os
@@ -17,6 +20,7 @@ from PIL import Image
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from engine import SceneRenderer, VideoStyle, create_blank_canvas, ease_out_cubic, smoothstep
+from diagrams import create_donut_chart, create_growth_bars, create_risk_matrix
 
 
 def parse_color(color_name):
@@ -70,7 +74,7 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         raise FileNotFoundError(f"Timeline not found: {timeline_file}")
 
     progress_file = os.path.join(project_dir, ".progress.json")
-    update_progress(progress_file, "Initializing", 0, 0, 0, 0, 0)
+    update_progress(progress_file, "Initializing Rich Scene Engine", 0, 0, 0, 0, 0)
 
     with open(timeline_file, "r") as f:
         data = json.load(f)
@@ -89,9 +93,9 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
     total_duration = sum(s.get("duration", 4.0) for s in scenes)
     total_frames = int(total_duration * fps)
 
-    print(f"[+] Starting Render: {title}")
+    print(f"[+] Starting Rich Render: {title}")
     print(f"[+] Output: {output_path} | Resolution: {width}x{height} @ {fps}fps")
-    print(f"[+] Duration: {total_duration:.1f}s | Total Frames: {total_frames}")
+    print(f"[+] Total Scenes: {len(scenes)} | Total Frames: {total_frames}")
 
     frames_rendered = 0
     start_time = cv2.getTickCount()
@@ -101,7 +105,7 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         scene_frames = int(duration * fps)
         chapter_num = scene.get("chapter_num", 1)
         chapter_title = scene.get("chapter_title", "Cash & Crown")
-        scene_type = scene.get("type", "stat")
+        scene_type = scene.get("type", "stat") # stat, image_hero, diagram_donut, diagram_growth, diagram_risk
 
         print(f"    -> Rendering Scene {scene_idx+1}/{len(scenes)}: [{scene_type}] {chapter_title} ({duration}s, {scene_frames} frames)")
 
@@ -115,28 +119,48 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         stat_label = scene.get("stat_label", "")
         stat_sub = scene.get("stat_subtext", "")
 
-        cutout_rel = scene.get("cutout_image", "")
-        cutout_path = os.path.join(project_dir, cutout_rel) if cutout_rel else ""
+        asset_rel = scene.get("image_asset", "")
+        asset_path = os.path.join(project_dir, asset_rel) if asset_rel else ""
 
         for frame_idx in range(scene_frames):
             t = frame_idx / float(max(1, scene_frames - 1))
-            
             canvas = create_blank_canvas(width, height, grain=True)
+            
+            # Chapter indicator badge
             renderer.render_chapter_badge(canvas, chapter_num, chapter_title)
 
-            if scene_type == "stat":
-                scale_anim = 0.96 + 0.04 * ease_out_cubic(min(1.0, t * 2.5))
+            # 1. Image Hero / Character Art scene
+            if scene_type == "image_hero" and os.path.exists(asset_path):
+                # Floating pan & subtle zoom
+                zoom = 0.55 + 0.04 * t
+                pan_y = -100 - 10 * t
+                renderer.composite_cutout(canvas, asset_path, scale=zoom, pan_y=pan_y)
+
+            # 2. Diagrams
+            elif scene_type == "diagram_donut":
+                prog = ease_out_cubic(min(1.0, t * 1.8))
+                diag = create_donut_chart(percent=78, progress=prog)
+                canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
+
+            elif scene_type == "diagram_growth":
+                prog = ease_out_cubic(min(1.0, t * 1.8))
+                diag = create_growth_bars(day1=800, day3=1000, progress=prog)
+                canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
+
+            elif scene_type == "diagram_risk":
+                prog = ease_out_cubic(min(1.0, t * 1.8))
+                diag = create_risk_matrix(progress=prog)
+                canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
+
+            # 3. Standard Stat Card
+            elif scene_type == "stat":
                 card_alpha = min(1.0, t * 3.0)
                 renderer.render_stat_card(canvas, stat_value, stat_label, subtext=stat_sub, alpha=card_alpha)
 
-            elif scene_type == "cutout" and os.path.exists(cutout_path):
-                zoom = 1.0 + 0.08 * t
-                pan_y = -15 * t
-                renderer.composite_cutout(canvas, cutout_path, scale=zoom, pan_y=pan_y)
-
+            # Kinetic text (lower third)
             if text_segments:
-                y_offset = int(180 - 15 * ease_out_cubic(min(1.0, t * 2.0)))
-                renderer.render_kinetic_text(canvas, text_segments, y_pos=(height // 2 + y_offset), font_size=52)
+                y_offset = int(220 - 15 * ease_out_cubic(min(1.0, t * 2.0)))
+                renderer.render_kinetic_text(canvas, text_segments, y_pos=880, font_size=42)
 
             frame_np = cv2.cvtColor(np.array(canvas), cv2.COLOR_RGB2BGR)
             out.write(frame_np)
@@ -147,7 +171,7 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
                 elapsed = (cv2.getTickCount() - start_time) / cv2.getTickFrequency()
                 fps_rate = frames_rendered / max(0.1, elapsed)
                 eta = (total_frames - frames_rendered) / max(0.1, fps_rate)
-                update_progress(progress_file, "Rendering Frames", pct, scene_idx + 1, len(scenes), frames_rendered, total_frames, eta)
+                update_progress(progress_file, "Rendering Rich Visuals", pct, scene_idx + 1, len(scenes), frames_rendered, total_frames, eta)
 
     out.release()
 
@@ -169,10 +193,10 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Render Cash & Crown Video")
+    parser = argparse.ArgumentParser(description="Render Cash & Crown Rich Video")
     parser.add_argument("--project", required=True, help="Path to project directory with timeline.json")
     parser.add_argument("--output", required=True, help="Output MP4 file path")
-    parser.add_argument("--fps", type=int, default=30, help="Frames per second (default 30)")
+    parser.add_argument("--fps", type=int, default=30, help="Frames per second")
     args = parser.parse_args()
 
     render_timeline(args.project, args.output, fps=args.fps)
