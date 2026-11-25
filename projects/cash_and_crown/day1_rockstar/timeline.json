@@ -1,0 +1,58 @@
+{
+  "title": "Why Rockstar Made the World Wait 13 Years for GTA VI",
+  "resolution": [1920, 1080],
+  "fps": 60,
+  "scenes": [
+    {
+      "chapter_num": 1,
+      "chapter_title": "THE 13-YEAR WAIT",
+      "type": "title",
+      "duration": 4.0,
+      "text": [
+        {"word": "WHY ROCKSTAR ", "color": "white"},
+        {"word": "MADE THE WORLD WAIT ", "color": "gold"},
+        {"word": "13 YEARS", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 1,
+      "chapter_title": "THE 13-YEAR WAIT",
+      "type": "stat",
+      "duration": 4.5,
+      "stat_value": "$8.5 BILLION",
+      "stat_label": "TOTAL GRAND THEFT AUTO REVENUE",
+      "stat_subtext": "Official Take-Two Interactive SEC Filings & Investor Reports",
+      "text": [
+        {"word": "THE MOST LUCRATIVE ", "color": "white"},
+        {"word": "ENTERTAINMENT PRODUCT ", "color": "gold"},
+        {"word": "IN HISTORY", "color": "white"}
+      ]
+    },
+    {
+      "chapter_num": 2,
+      "chapter_title": "THE BUSINESS MODEL",
+      "type": "stat",
+      "duration": 4.5,
+      "stat_value": "185,000,000+",
+      "stat_label": "COPIES OF GTA V SOLD GLOBALLY",
+      "stat_subtext": "Surpassing the entire box office run of Titanic & Avatar combined",
+      "text": [
+        {"word": "HOW RECURRENT SPENDING ", "color": "cyan"},
+        {"word": "FUNDED THE FUTURE", "color": "white"}
+      ]
+    },
+    {
+      "chapter_num": 3,
+      "chapter_title": "THE REAL COST",
+      "type": "stat",
+      "duration": 4.0,
+      "stat_value": "$2,000,000,000",
+      "stat_label": "ESTIMATED DEVELOPMENT & MARKETING BUDGET",
+      "stat_subtext": "The single most expensive media production ever conceived",
+      "text": [
+        {"word": "WHY HOLLYWOOD ", "color": "white"},
+        {"word": "CANNOT COMPETE", "color": "gold"}
+      ]
+    }
+  ]
+}

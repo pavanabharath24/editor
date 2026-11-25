@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.temp.mp4
+output/*.mp4
+projects/**/frames/
+projects/**/*.mp4
+.DS_Store
