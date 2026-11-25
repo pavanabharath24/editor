@@ -182,7 +182,8 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
                     ret, video_frame = cap.read()
                 if ret:
                     frame_rgb = cv2.cvtColor(video_frame, cv2.COLOR_BGR2RGB)
-                    render_center_retro_clip(canvas, frame_rgb, logo_path=clip_logo_path)
+                    game_title = scene.get("game_title", "")
+                    render_center_retro_clip(canvas, frame_rgb, logo_path=clip_logo_path, game_title=game_title)
 
             elif scene_type == "image_hero" and os.path.exists(asset_path):
                 zoom = 0.50 + 0.04 * t

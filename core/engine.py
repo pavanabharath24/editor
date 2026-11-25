@@ -224,17 +224,18 @@ def render_pip_video(canvas, video_frame, logo_path=None, size=(460, 260), pos=(
         # Position at bottom right of PIP
         canvas.paste(logo, (x + w - logo_w - 12, y + h - logo_h - 12), mask=logo)
 
-def render_center_retro_clip(canvas, video_frame, logo_path=None, size=(960, 720), pos=None, border_color=(212, 175, 55)):
+def render_center_retro_clip(canvas, video_frame, logo_path=None, game_title=None, size=(960, 720), pos=None, border_color=(212, 175, 55)):
     """
     Renders 4:3 aspect ratio gameplay clip in the center of the 16:9 canvas with:
     - Elegant rounded border
-    - Associated game logo floating on the top-left corner of the 4:3 clip (overlapping the border)
+    - Associated game logo floating on the top-left corner of the 4:3 clip (safe ~80px top margin)
+    - Game title tag on the top-right border
     """
     cw, ch = size
     if pos is None:
-        # Perfectly centered horizontally, slightly raised to give room for bottom captions
+        # Centered horizontally, positioned with ample top breathing space (80px+ from top)
         cx = (canvas.width - cw) // 2
-        cy = (canvas.height - ch) // 2 - 50
+        cy = 150
     else:
         cx, cy = pos
 
@@ -258,7 +259,7 @@ def render_center_retro_clip(canvas, video_frame, logo_path=None, size=(960, 720
     # Game logo on the top-left corner border of the 4:3 clip
     if logo_path and os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        # Scale logo neatly (max width 175, max height 95) so it never touches the screen edge
+        # Scaled down franchise logos (max width 175px, max height 95px)
         max_w = 175
         max_h = 95
         ratio = min(max_w / float(logo.width), max_h / float(logo.height))
@@ -266,7 +267,25 @@ def render_center_retro_clip(canvas, video_frame, logo_path=None, size=(960, 720
         logo_h = int(logo.height * ratio)
         logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
         
-        # Position sitting elegantly across top-left corner border with safe breathing margin
-        lx = cx - 10
-        ly = max(55, cy - (logo_h // 2))
+        # Enforced safe top padding: Sit on the top-left rounded corner of the 4:3 frame with ~80px of clean black space above
+        lx = cx - 12
+        ly = max(80, cy - (logo_h // 2))
         canvas.paste(logo, (lx, ly), mask=logo)
+
+    # Sleek game title badge on top-right border of the 4:3 clip
+    if game_title:
+        font_tag = get_font(DEFAULT_FONT_BOLD, 18)
+        tag_text = game_title.upper()
+        bbox = font_tag.getbbox(tag_text)
+        tw = bbox[2] - bbox[0]
+        th = bbox[3] - bbox[1]
+        badge_w = tw + 28
+        badge_h = 36
+        bx = cx + cw - badge_w
+        by = max(80, cy - 18)
+        
+        tag_layer = Image.new("RGBA", (canvas.width, canvas.height), (0, 0, 0, 0))
+        draw_tag = ImageDraw.Draw(tag_layer)
+        draw_tag.rounded_rectangle((bx, by, bx + badge_w, by + badge_h), radius=8, fill=(20, 20, 24, 230), outline=(*border_color, 255), width=2)
+        draw_tag.text((bx + 14, by + 8), tag_text, font=font_tag, fill=VideoStyle.ACCENT_WHITE)
+        canvas.paste(tag_layer, (0, 0), mask=tag_layer)

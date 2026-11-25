@@ -28,7 +28,8 @@
           "word": "WITH GTA V",
           "color": "cyan"
         }
-      ]
+      ],
+      "game_title": "Grand Theft Auto V"
     },
     {
       "scene_id": 2,
@@ -111,7 +112,8 @@
           "word": "THE NEON 3D MASTERPIECE",
           "color": "cyan"
         }
-      ]
+      ],
+      "game_title": "GTA: Vice City (2002)"
     },
     {
       "scene_id": 6,
@@ -130,7 +132,8 @@
           "word": "AN ENTIRE LIVING STATE",
           "color": "cyan"
         }
-      ]
+      ],
+      "game_title": "GTA: San Andreas (2004)"
     },
     {
       "scene_id": 7,
@@ -153,7 +156,8 @@
           "word": "(85M COPIES)",
           "color": "white"
         }
-      ]
+      ],
+      "game_title": "Red Dead Redemption 2"
     },
     {
       "scene_id": 8,
