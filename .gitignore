@@ -3,5 +3,6 @@ __pycache__/
 *.temp.mp4
 output/*.mp4
 projects/**/frames/
-projects/**/*.mp4
+# Allow project asset clips, ignore rendered output videos
+!projects/**/assets/**/*.mp4
 .DS_Store
