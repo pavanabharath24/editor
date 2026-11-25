@@ -258,11 +258,15 @@ def render_center_retro_clip(canvas, video_frame, logo_path=None, size=(960, 720
     # Game logo on the top-left corner border of the 4:3 clip
     if logo_path and os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        logo_w = 260
-        logo_h = int(logo.height * (logo_w / float(logo.width)))
+        # Scale logo neatly (max width 175, max height 95) so it never touches the screen edge
+        max_w = 175
+        max_h = 95
+        ratio = min(max_w / float(logo.width), max_h / float(logo.height))
+        logo_w = int(logo.width * ratio)
+        logo_h = int(logo.height * ratio)
         logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
         
-        # Position logo sitting across top-left corner
-        lx = cx - 25
-        ly = cy - (logo_h // 2) - 10
+        # Position sitting elegantly across top-left corner border with safe breathing margin
+        lx = cx - 10
+        ly = max(55, cy - (logo_h // 2))
         canvas.paste(logo, (lx, ly), mask=logo)

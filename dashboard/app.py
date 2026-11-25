@@ -23,7 +23,9 @@ CORS(app)
 DAY1_PROJECT_DIR = os.path.join(PROJECT_ROOT, "projects", "cash_and_crown", "day1_rockstar")
 VIDEO_OUTPUT = os.path.join(DAY1_PROJECT_DIR, "output", "day1_rockstar_full.mp4")
 TEST_PREVIEW = os.path.join(DAY1_PROJECT_DIR, "test_preview.mp4")
-PROGRESS_FILE = os.path.join(DAY1_PROJECT_DIR, ".progress.json")
+QUICK_DIR = os.path.join(PROJECT_ROOT, "projects", "cash_and_crown", "quick_showcase")
+QUICK_VIDEO = os.path.join(QUICK_DIR, "showcase.mp4")
+QUICK_PROGRESS = os.path.join(QUICK_DIR, ".progress.json")
 
 render_lock = threading.Lock()
 is_rendering = False
@@ -47,14 +49,26 @@ def get_timeline():
 def get_status():
     global is_rendering
     progress_data = {}
-    if os.path.exists(PROGRESS_FILE):
+    
+    # Read the most recent progress file
+    files_to_check = [PROGRESS_FILE, QUICK_PROGRESS]
+    latest_file = None
+    latest_mtime = 0
+    for p in files_to_check:
+        if os.path.exists(p):
+            mtime = os.path.getmtime(p)
+            if mtime > latest_mtime:
+                latest_mtime = mtime
+                latest_file = p
+                
+    if latest_file:
         try:
-            with open(PROGRESS_FILE, "r") as f:
+            with open(latest_file, "r") as f:
                 progress_data = json.load(f)
         except Exception:
             pass
 
-    has_video = os.path.exists(VIDEO_OUTPUT) or os.path.exists(TEST_PREVIEW)
+    has_video = os.path.exists(VIDEO_OUTPUT) or os.path.exists(TEST_PREVIEW) or os.path.exists(QUICK_VIDEO)
     return jsonify({
         "rendering": is_rendering,
         "video_ready": has_video,
@@ -64,10 +78,12 @@ def get_status():
 
 @app.route("/api/video")
 def get_video():
-    # Return full render if exists, otherwise fallback to preview
-    target_video = VIDEO_OUTPUT if os.path.exists(VIDEO_OUTPUT) else TEST_PREVIEW
-    if os.path.exists(target_video):
-        return send_file(target_video, mimetype="video/mp4")
+    # Return most recently updated video file
+    videos = [VIDEO_OUTPUT, TEST_PREVIEW, QUICK_VIDEO]
+    existing = [v for v in videos if os.path.exists(v)]
+    if existing:
+        target = max(existing, key=os.path.getmtime)
+        return send_file(target, mimetype="video/mp4")
     return "Video not found", 404
 
 

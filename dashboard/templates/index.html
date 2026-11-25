@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cash & Crown Studio | Live Production Dashboard</title>
+  <title>Cash & Crown | Video Production Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -31,10 +31,10 @@
     }
 
     header {
-      background-color: rgba(18, 18, 22, 0.85);
+      background-color: rgba(18, 18, 22, 0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--card-border);
-      padding: 1.25rem 2.5rem;
+      padding: 1.1rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -51,12 +51,12 @@
 
     .brand-crown {
       color: var(--gold);
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
 
     .brand-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 900;
       letter-spacing: -0.02em;
       background: linear-gradient(135deg, #ffffff 40%, var(--gold) 100%);
@@ -68,12 +68,12 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 9999px;
       background-color: rgba(56, 189, 248, 0.12);
       border: 1px solid rgba(56, 189, 248, 0.3);
       color: var(--cyan);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -81,41 +81,35 @@
 
     .badge-live::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
     }
 
     /* Main Container */
     main {
       flex: 1;
-      max-width: 1440px;
+      max-width: 1080px;
       margin: 0 auto;
       width: 100%;
-      padding: 2.5rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 2rem;
-    }
-
-    @media (max-width: 1080px) {
-      main { grid-template-columns: 1fr; }
+      padding: 2rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .player-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     }
 
     .player-header {
-      padding: 1.25rem 1.75rem;
+      padding: 1.2rem 1.75rem;
       border-bottom: 1px solid var(--card-border);
       display: flex;
       justify-content: space-between;
@@ -153,7 +147,7 @@
     }
 
     .btn-sm {
-      padding: 0.45rem 0.95rem;
+      padding: 0.5rem 1.1rem;
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.85rem;
@@ -161,45 +155,63 @@
       background: #1c1c22;
       color: #fff;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
 
     .btn-sm:hover {
       background: #272730;
       border-color: var(--gold);
+      color: var(--gold);
     }
 
-    .progress-section {
-      padding: 1.5rem 1.75rem;
-      background: rgba(20, 20, 24, 0.5);
-      border-top: 1px solid var(--card-border);
+    /* Clean Completion Progress Card */
+    .progress-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.75rem 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .progress-header {
+    .progress-top-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .progress-label-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .progress-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .progress-status {
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--cyan);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .progress-pct {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
+      font-weight: 900;
+      font-size: 2.2rem;
       color: var(--gold);
+      text-shadow: 0 0 20px var(--gold-glow);
     }
 
     .progress-bar-container {
       width: 100%;
-      height: 10px;
+      height: 14px;
       background: var(--progress-bg);
       border-radius: 9999px;
       overflow: hidden;
@@ -208,136 +220,30 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--cyan));
+      background: linear-gradient(90deg, #b8860b, var(--gold), var(--cyan));
       border-radius: 9999px;
       transition: width 0.4s ease;
       width: 0%;
-      box-shadow: 0 0 12px var(--gold-glow);
+      box-shadow: 0 0 15px var(--gold-glow);
     }
 
     .render-stats-row {
       display: flex;
       justify-content: space-between;
-      margin-top: 1rem;
-      font-size: 0.85rem;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
 
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.5rem;
-    }
-
-    .card-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
+    .stat-pill strong {
       color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 0.85rem 1.25rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
-      border: none;
-      text-decoration: none;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #e5be38 0%, #b8860b 100%);
-      color: #000;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-    }
-
-    .btn-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--card-border);
-      color: var(--text);
-      margin-top: 0.75rem;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: #3f3f46;
-    }
-
-    .scene-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      max-height: 480px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .scene-item {
-      padding: 0.85rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.85rem;
-      transition: border-color 0.2s;
-    }
-
-    .scene-item.active {
-      border-color: var(--gold);
-      background: rgba(212, 175, 55, 0.04);
-    }
-
-    .scene-item-header {
-      display: flex;
-      justify-content: space-between;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .scene-item-title {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .scene-item-meta {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-    }
-
-    .guide-banner {
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      font-size: 0.82rem;
-      color: var(--cyan);
-      margin-bottom: 1.25rem;
-      line-height: 1.4;
     }
   </style>
 </head>
@@ -358,74 +264,51 @@
   </header>
 
   <main>
-    <div>
-      <div class="player-card">
-        <div class="player-header">
-          <div class="video-title" id="videoHeading">Day 1: Why Rockstar Made the World Wait 13 Years for GTA VI</div>
-          <span style="font-size: 0.8rem; color: var(--gold); font-weight: 700;">1080p 60fps</span>
-        </div>
+    <div class="player-card">
+      <div class="player-header">
+        <div class="video-title" id="videoHeading">Why Rockstar Made the World Wait 13 Years for GTA VI</div>
+        <span style="font-size: 0.8rem; color: var(--gold); font-weight: 700; background: rgba(212, 175, 55, 0.1); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(212, 175, 55, 0.3);">1080p 60fps</span>
+      </div>
 
-        <div class="video-viewport">
-          <video id="videoPlayer" controls autoplay muted loop playsinline>
-            <source src="/api/video" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
+      <div class="video-viewport">
+        <video id="videoPlayer" controls autoplay muted loop playsinline>
+          <source src="/api/video" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
 
-        <div class="controls-overlay">
-          <button class="btn-sm" onclick="reloadVideo()">🔄 Force Reload Video</button>
-          <button class="btn-sm" onclick="togglePlay()">⏯ Play / Pause</button>
-          <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: auto;">
-            ⚡ Rich Visual Cutouts & Financial Infographics Active
-          </span>
-        </div>
-
-        <div class="progress-section">
-          <div class="progress-header">
-            <span class="progress-status" id="statusText">Checking Engine Status...</span>
-            <span class="progress-pct" id="pctText">0%</span>
-          </div>
-
-          <div class="progress-bar-container">
-            <div class="progress-bar-fill" id="progressBar"></div>
-          </div>
-
-          <div class="render-stats-row">
-            <span id="sceneStats">Scene: -- / --</span>
-            <span id="frameStats">Frames: -- / --</span>
-            <span id="etaStats">ETA: --</span>
-          </div>
-        </div>
+      <div class="controls-overlay">
+        <button class="btn-sm" onclick="reloadVideo()">🔄 Force Reload Video</button>
+        <button class="btn-sm" onclick="togglePlay()">⏯ Play / Pause</button>
+        <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: auto;">
+          ⚡ Clean 4:3 Centered Gameplay Clips & Corner Logos
+        </span>
       </div>
     </div>
 
-    <div class="sidebar">
-      <div class="card">
-        <div class="card-title">⚡ How to Use This Studio</div>
-        <div class="guide-banner">
-          💡 <strong>Tip</strong>: Click <strong>"Force Reload Video"</strong> to see the latest rendered cutouts (Arthur Morgan, GTA V, Donut & Bar Charts).
+    <!-- Live Render Completion Card -->
+    <div class="progress-card">
+      <div class="progress-top-row">
+        <div class="progress-label-wrap">
+          <span class="progress-title">Render Completion</span>
+          <span class="progress-status" id="statusText">Checking Engine Status...</span>
         </div>
-
-        <button class="btn btn-gold" id="btnStartRender" onclick="startRender()">
-          ▶ Start Full Render (Day 1)
-        </button>
-
-        <button class="btn btn-outline" onclick="pushToKaggle()">
-          ☁ Push & Render on Kaggle GPU
-        </button>
+        <div class="progress-pct" id="pctText">0%</div>
       </div>
 
-      <div class="card" style="flex: 1;">
-        <div class="card-title">📜 12-Scene Timeline</div>
-        <div class="scene-list" id="sceneList">
-        </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+
+      <div class="render-stats-row">
+        <div class="stat-pill" id="sceneStats">Scene: <strong>-- / --</strong></div>
+        <div class="stat-pill" id="frameStats">Frames: <strong>-- / --</strong></div>
+        <div class="stat-pill" id="etaStats">ETA: <strong>--</strong></div>
       </div>
     </div>
   </main>
 
   <script>
-    let isRendering = false;
-
     function reloadVideo() {
       const player = document.getElementById('videoPlayer');
       player.src = '/api/video?t=' + Date.now();
@@ -449,80 +332,35 @@
         document.getElementById('statusText').innerText = data.progress?.status || (data.video_ready ? 'Video Ready' : 'Idle');
 
         const badge = document.getElementById('renderBadge');
-        if (data.rendering) {
+        if (data.progress?.status && data.progress.status.includes('Render')) {
           badge.innerText = 'Rendering';
           badge.style.color = '#eab308';
-          badge.style.borderColor = '#eab308';
-        } else if (data.video_ready) {
+          badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+        } else {
           badge.innerText = 'Ready';
-          badge.style.color = '#10b981';
-          badge.style.borderColor = '#10b981';
+          badge.style.color = 'var(--cyan)';
+          badge.style.borderColor = 'rgba(56, 189, 248, 0.3)';
         }
 
-        if (data.progress) {
-          document.getElementById('sceneStats').innerText = `Scene: ${data.progress.current_scene || 0} / ${data.progress.total_scenes || 12}`;
-          document.getElementById('frameStats').innerText = `Frames: ${data.progress.current_frame || 0} / ${data.progress.total_frames || 0}`;
-          document.getElementById('etaStats').innerText = data.progress.eta_seconds ? `ETA: ${data.progress.eta_seconds}s` : (pct >= 100 ? 'Ready' : '--');
+        if (data.progress?.current_scene) {
+          document.getElementById('sceneStats').innerHTML = 'Scene: <strong>' + data.progress.current_scene + ' / ' + data.progress.total_scenes + '</strong>';
         }
-      } catch (err) {
-        console.error('Status fetch error:', err);
+        if (data.progress?.current_frame) {
+          document.getElementById('frameStats').innerHTML = 'Frames: <strong>' + data.progress.current_frame + ' / ' + data.progress.total_frames + '</strong>';
+        }
+        if (data.progress?.eta_seconds !== undefined) {
+          const m = Math.floor(data.progress.eta_seconds / 60);
+          const s = Math.round(data.progress.eta_seconds % 60);
+          document.getElementById('etaStats').innerHTML = 'ETA: <strong>' + m + 'm ' + s + 's</strong>';
+        }
+      } catch (e) {
+        console.error('Status fetch error', e);
       }
     }
 
-    async function loadTimeline() {
-      try {
-        const res = await fetch('/api/timeline');
-        const data = await res.json();
-        const container = document.getElementById('sceneList');
-        container.innerHTML = '';
-
-        data.scenes.forEach(scene => {
-          const div = document.createElement('div');
-          div.className = 'scene-item';
-          div.innerHTML = `
-            <div class="scene-item-header">
-              <span>[${String(scene.chapter_num).padStart(2, '0')}] ${scene.chapter_title}</span>
-              <span>${scene.duration}s</span>
-            </div>
-            <div class="scene-item-title">${scene.stat_value || (scene.type === 'image_hero' ? '🖼 GAME / CHARACTER ART' : (scene.type.startsWith('diagram') ? '📊 ANIMATED DIAGRAM' : scene.type.toUpperCase()))}</div>
-            <div class="scene-item-meta">${scene.stat_label || (scene.image_asset || '')}</div>
-          `;
-          container.appendChild(div);
-        });
-      } catch (err) {
-        console.error('Timeline fetch error:', err);
-      }
-    }
-
-    async function startRender() {
-      const btn = document.getElementById('btnStartRender');
-      btn.disabled = true;
-      btn.innerText = '⏳ Rendering in Progress...';
-      isRendering = true;
-
-      try {
-        await fetch('/api/render', { method: 'POST' });
-      } catch (err) {
-        alert('Render initiation error: ' + err);
-        btn.disabled = false;
-        btn.innerText = '▶ Start Full Render (Day 1)';
-      }
-    }
-
-    async function pushToKaggle() {
-      if (!confirm('Push Day 1 render job to Kaggle Cloud GPU?')) return;
-      try {
-        const res = await fetch('/api/kaggle/push', { method: 'POST' });
-        const data = await res.json();
-        alert(data.message || 'Dispatched to Kaggle!');
-      } catch (err) {
-        alert('Kaggle dispatch error: ' + err);
-      }
-    }
-
-    loadTimeline();
+    // Auto-poll status every 2 seconds
     fetchStatus();
-    setInterval(fetchStatus, 3000);
+    setInterval(fetchStatus, 2000);
   </script>
 </body>
 </html>
