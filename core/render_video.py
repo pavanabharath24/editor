@@ -2,8 +2,8 @@
 """
 Cash & Crown / Document Video Engine - Video Timeline Builder & Renderer
 Dynamic documentary scenes featuring:
-- Official Rockstar Games logos & game covers (GTA 3, Vice City, San Andreas, GTA IV, GTA V, GTA VI, RDR2, Bully, Max Payne)
-- Logo Grid Gallery showcasing all Rockstar franchise logos simultaneously
+- Live Picture-in-Picture (PIP) gameplay video in upper-right corner with game logo
+- Franchise gallery grid showcasing all Rockstar titles
 - Animated financial infographics (78% Recurrent Donut, $1B Launch Revenue Bars, 3-Risk Matrix)
 - Dynamic camera zooms and smooth alpha-faded subject overlays
 """
@@ -19,7 +19,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from engine import SceneRenderer, VideoStyle, create_blank_canvas, ease_out_cubic, smoothstep
+from engine import SceneRenderer, VideoStyle, create_blank_canvas, ease_out_cubic, smoothstep, render_pip_video
 from diagrams import create_donut_chart, create_growth_bars, create_risk_matrix
 
 
@@ -69,7 +69,6 @@ def update_progress(progress_file, status, percent, current_scene, total_scenes,
 
 
 def render_logo_grid(canvas, project_dir, progress=1.0):
-    """Renders a dynamic showcase grid of all Rockstar created game covers."""
     assets_dir = os.path.join(project_dir, "assets")
     covers = [
         "gta3_hd.jpg",
@@ -81,8 +80,6 @@ def render_logo_grid(canvas, project_dir, progress=1.0):
         "bully_hd.jpg",
         "maxpayne3_hd.jpg"
     ]
-    
-    # 2 rows of 4 cards
     card_w = 340
     card_h = 330
     start_x = 220
@@ -157,46 +154,57 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         asset_rel = scene.get("image_asset", "")
         asset_path = os.path.join(project_dir, asset_rel) if asset_rel else ""
 
+        # PIP video setup if present
+        pip_video_rel = scene.get("pip_video", "")
+        pip_logo_rel = scene.get("pip_logo", "")
+        pip_video_path = os.path.join(project_dir, pip_video_rel) if pip_video_rel else ""
+        pip_logo_path = os.path.join(project_dir, pip_logo_rel) if pip_logo_rel else ""
+
+        cap = None
+        if pip_video_path and os.path.exists(pip_video_path):
+            cap = cv2.VideoCapture(pip_video_path)
+
         for frame_idx in range(scene_frames):
             t = frame_idx / float(max(1, scene_frames - 1))
             canvas = create_blank_canvas(width, height, grain=True)
             
             renderer.render_chapter_badge(canvas, chapter_num, chapter_title)
 
-            # Scene Type 1: Logo / Game Cover Grid
+            # Scene Types
             if scene_type == "games_grid":
                 render_logo_grid(canvas, project_dir, progress=t)
 
-            # Scene Type 2: Single Hero Art / Character
             elif scene_type == "image_hero" and os.path.exists(asset_path):
-                zoom = 0.52 + 0.04 * t
+                zoom = 0.50 + 0.04 * t
                 pan_y = -90 - 10 * t
                 renderer.composite_cutout(canvas, asset_path, scale=zoom, pan_y=pan_y)
 
-            # Scene Type 3: Donut chart
             elif scene_type == "diagram_donut":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_donut_chart(percent=78, progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
-            # Scene Type 4: Growth bars
             elif scene_type == "diagram_growth":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_growth_bars(day1=800, day3=1000, progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
-            # Scene Type 5: Risk matrix
             elif scene_type == "diagram_risk":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_risk_matrix(progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
-            # Scene Type 6: Stat Card
             elif scene_type == "stat":
                 card_alpha = min(1.0, t * 3.0)
                 renderer.render_stat_card(canvas, stat_value, stat_label, subtext=stat_sub, alpha=card_alpha)
 
-            # Kinetic text (lower third)
+            # Read next frame of PIP video if enabled
+            if cap and cap.isOpened():
+                ret, pip_frame = cap.read()
+                if ret:
+                    pip_rgb = cv2.cvtColor(pip_frame, cv2.COLOR_BGR2RGB)
+                    render_pip_video(canvas, pip_rgb, logo_path=pip_logo_path)
+
             if text_segments:
                 renderer.render_kinetic_text(canvas, text_segments, y_pos=880, font_size=42)
 
@@ -210,6 +218,9 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
                 fps_rate = frames_rendered / max(0.1, elapsed)
                 eta = (total_frames - frames_rendered) / max(0.1, fps_rate)
                 update_progress(progress_file, "Rendering Rich Visuals", pct, scene_idx + 1, len(scenes), frames_rendered, total_frames, eta)
+
+        if cap:
+            cap.release()
 
     out.release()
 

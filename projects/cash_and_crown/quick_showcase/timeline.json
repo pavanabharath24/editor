@@ -1,5 +1,5 @@
 {
-  "title": "All Rockstar Games & Franchise Grid Showcase",
+  "title": "All Rockstar Games, Franchise Grid & Corner Gameplay PIP Showcase",
   "resolution": [1920, 1080],
   "fps": 30,
   "scenes": [
@@ -18,7 +18,9 @@
       "chapter_title": "THE 3D REVOLUTION",
       "type": "image_hero",
       "image_asset": "assets/logo_gtavc.png",
-      "duration": 4.0,
+      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
+      "pip_logo": "assets/logo_gtavc.png",
+      "duration": 4.5,
       "text": [
         {"word": "VICE CITY: ", "color": "white"},
         {"word": "THE NEON DECADE ", "color": "gold"},
@@ -30,7 +32,9 @@
       "chapter_title": "BEYOND GTA",
       "type": "image_hero",
       "image_asset": "assets/rdr2_arthur_faded.png",
-      "duration": 4.0,
+      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
+      "pip_logo": "assets/rockstar_logo.png",
+      "duration": 4.5,
       "text": [
         {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
         {"word": "$725M IN 3 DAYS", "color": "cyan"}
@@ -51,6 +55,8 @@
       "chapter_title": "THE NEXT CHAPTER",
       "type": "image_hero",
       "image_asset": "assets/logo_gta6.png",
+      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
+      "pip_logo": "assets/logo_gta6.png",
       "duration": 5.0,
       "text": [
         {"word": "GRAND THEFT AUTO VI: ", "color": "white"},

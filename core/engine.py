@@ -188,3 +188,38 @@ def create_blank_canvas(width=1920, height=1080, grain=True):
         arr = np.clip(arr + noise[:, :, np.newaxis], 0, 255).astype(np.uint8)
         base = Image.fromarray(arr)
     return base
+
+def render_pip_video(canvas, video_frame, logo_path=None, size=(460, 260), pos=(1380, 70), border_color=(212, 175, 55)):
+    """
+    Renders picture-in-picture video window in the upper-right corner with:
+    - Rounded corners and sleek glowing border
+    - Associated game franchise logo badge in corner of the PIP
+    """
+    w, h = size
+    x, y = pos
+
+    # Resize video frame to PIP window
+    pip_img = Image.fromarray(video_frame).convert("RGBA").resize((w, h), Image.Resampling.LANCZOS)
+
+    # Rounded mask
+    mask = Image.new("L", (w, h), 0)
+    draw_mask = ImageDraw.Draw(mask)
+    draw_mask.rounded_rectangle((0, 0, w, h), radius=16, fill=255)
+
+    # Border overlay
+    border = Image.new("RGBA", (w + 8, h + 8), (0, 0, 0, 0))
+    draw_b = ImageDraw.Draw(border)
+    draw_b.rounded_rectangle((0, 0, w + 7, h + 7), radius=18, fill=None, outline=(*border_color, 255), width=3)
+
+    # Paste border and PIP
+    canvas.paste(border, (x - 4, y - 4), mask=border)
+    canvas.paste(pip_img, (x, y), mask=mask)
+
+    # Optional game logo badge at the bottom-right or top-left of PIP
+    if logo_path and os.path.exists(logo_path):
+        logo = Image.open(logo_path).convert("RGBA")
+        logo_w = int(w * 0.35)
+        logo_h = int(logo.height * (logo_w / float(logo.width)))
+        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+        # Position at bottom right of PIP
+        canvas.paste(logo, (x + w - logo_w - 12, y + h - logo_h - 12), mask=logo)
