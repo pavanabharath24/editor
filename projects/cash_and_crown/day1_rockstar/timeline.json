@@ -1,57 +1,180 @@
 {
   "title": "Why Rockstar Made the World Wait 13 Years for GTA VI",
+  "project_id": "day1_rockstar",
   "resolution": [1920, 1080],
   "fps": 60,
   "scenes": [
     {
+      "scene_id": 1,
       "chapter_num": 1,
-      "chapter_title": "THE 13-YEAR WAIT",
-      "type": "title",
-      "duration": 4.0,
-      "text": [
-        {"word": "WHY ROCKSTAR ", "color": "white"},
-        {"word": "MADE THE WORLD WAIT ", "color": "gold"},
-        {"word": "13 YEARS", "color": "cyan"}
-      ]
-    },
-    {
-      "chapter_num": 1,
-      "chapter_title": "THE 13-YEAR WAIT",
+      "chapter_title": "THE 13-YEAR GAP",
       "type": "stat",
-      "duration": 4.5,
-      "stat_value": "$8.5 BILLION",
-      "stat_label": "TOTAL GRAND THEFT AUTO REVENUE",
-      "stat_subtext": "Official Take-Two Interactive SEC Filings & Investor Reports",
+      "duration": 12.0,
+      "stat_value": "13 YEARS",
+      "stat_label": "THE LONGEST GAP IN GAMING HISTORY",
+      "stat_subtext": "September 2013 (GTA V) to November 19, 2026 (GTA VI)",
       "text": [
-        {"word": "THE MOST LUCRATIVE ", "color": "white"},
-        {"word": "ENTERTAINMENT PRODUCT ", "color": "gold"},
-        {"word": "IN HISTORY", "color": "white"}
+        {"word": "SEPTEMBER 2013 ", "color": "white"},
+        {"word": "TO NOVEMBER 2026: ", "color": "gold"},
+        {"word": "THE 13-YEAR WAIT", "color": "cyan"}
       ]
     },
     {
+      "scene_id": 2,
+      "chapter_num": 1,
+      "chapter_title": "THE 13-YEAR GAP",
+      "type": "stat",
+      "duration": 23.0,
+      "stat_value": "RELEASE GAP",
+      "stat_label": "A RELEASE GAP, NOT DEVELOPMENT TIME",
+      "stat_subtext": "Confirmed Feb 2022: 'Development was well underway'",
+      "text": [
+        {"word": "FANS WAITED THROUGH ", "color": "white"},
+        {"word": "TWO DELAYS ", "color": "gold"},
+        {"word": "FOR MAXIMUM POLISH", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 3,
       "chapter_num": 2,
-      "chapter_title": "THE BUSINESS MODEL",
+      "chapter_title": "DUNDEE TO ROCKSTAR",
       "type": "stat",
-      "duration": 4.5,
-      "stat_value": "185,000,000+",
-      "stat_label": "COPIES OF GTA V SOLD GLOBALLY",
-      "stat_subtext": "Surpassing the entire box office run of Titanic & Avatar combined",
+      "duration": 20.0,
+      "stat_value": "1988: DUNDEE",
+      "stat_label": "DMA DESIGN FOUNDED BY DAVID JONES",
+      "stat_subtext": "From small Scottish studio to creators of Lemmings (1991)",
       "text": [
-        {"word": "HOW RECURRENT SPENDING ", "color": "cyan"},
-        {"word": "FUNDED THE FUTURE", "color": "white"}
+        {"word": "HOW A SCOTTISH STUDIO ", "color": "cyan"},
+        {"word": "BUILT A GLOBAL EMPIRE", "color": "white"}
       ]
     },
     {
-      "chapter_num": 3,
-      "chapter_title": "THE REAL COST",
+      "scene_id": 4,
+      "chapter_num": 2,
+      "chapter_title": "DUNDEE TO ROCKSTAR",
       "type": "stat",
-      "duration": 4.0,
-      "stat_value": "$2,000,000,000",
-      "stat_label": "ESTIMATED DEVELOPMENT & MARKETING BUDGET",
-      "stat_subtext": "The single most expensive media production ever conceived",
+      "duration": 20.0,
+      "stat_value": "JAN 1999",
+      "stat_label": "ROCKSTAR GAMES OFFICIALLY ANNOUNCED",
+      "stat_subtext": "Take-Two Interactive buys BMG Interactive assets for GTA",
       "text": [
-        {"word": "WHY HOLLYWOOD ", "color": "white"},
-        {"word": "CANNOT COMPETE", "color": "gold"}
+        {"word": "FOUNDED BY ", "color": "white"},
+        {"word": "SAM & DAN HOUSER ", "color": "gold"},
+        {"word": "UNDER TAKE-TWO", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 5,
+      "chapter_num": 3,
+      "chapter_title": "THE GTA EVOLUTION",
+      "type": "stat",
+      "duration": 30.0,
+      "stat_value": "2001: GTA III",
+      "stat_label": "THE 3D OPEN-WORLD REVOLUTION",
+      "stat_subtext": "Vice City (2002) -> San Andreas (2004) -> GTA IV (2008)",
+      "text": [
+        {"word": "EVERY TITLE ", "color": "white"},
+        {"word": "EXPANDED THE HORIZON ", "color": "cyan"},
+        {"word": "OF FREEDOM", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 6,
+      "chapter_num": 3,
+      "chapter_title": "THE GTA EVOLUTION",
+      "type": "stat",
+      "duration": 22.0,
+      "stat_value": "SEPT 2013",
+      "stat_label": "GRAND THEFT AUTO V LAUNCHES",
+      "stat_subtext": "Followed by GTA Online two weeks later: the persistent world",
+      "text": [
+        {"word": "EACH GAME GROWS BIGGER, ", "color": "gold"},
+        {"word": "AND GAPS GROW LONGER", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 7,
+      "chapter_num": 4,
+      "chapter_title": "BEYOND GTA",
+      "type": "stat",
+      "duration": 34.0,
+      "stat_value": "$725,000,000+",
+      "stat_label": "RED DEAD REDEMPTION 2 (FIRST 3 DAYS)",
+      "stat_subtext": "Passed 85 Million Copies Worldwide; Proving dominance beyond GTA",
+      "text": [
+        {"word": "BULLY, L.A. NOIRE, ", "color": "white"},
+        {"word": "MIDNIGHT CLUB, ", "color": "gold"},
+        {"word": "MAX PAYNE 3", "color": "cyan"}
+      ]
+    },
+    {
+      "scene_id": 8,
+      "chapter_num": 5,
+      "chapter_title": "FAILURES & CONTROVERSIES",
+      "type": "stat",
+      "duration": 18.0,
+      "stat_value": "AGENT (2009)",
+      "stat_label": "THE SPY GAME THAT DISAPPEARED",
+      "stat_subtext": "Cancelled project quietly scrubbed from website in 2021",
+      "text": [
+        {"word": "A CANCELLED PROJECT ", "color": "gold"},
+        {"word": "WASTES YEARS OF EFFORT", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 9,
+      "chapter_num": 5,
+      "chapter_title": "FAILURES & CONTROVERSIES",
+      "type": "stat",
+      "duration": 22.0,
+      "stat_value": "3 KINDS OF RISK",
+      "stat_label": "CANCELLATION, CONTROVERSY, TECHNICAL BUGS",
+      "stat_subtext": "GTA Trilogy 2021 launch bugs forced an apology & PC sales pause",
+      "text": [
+        {"word": "EVEN INDUSTRY GIANTS ", "color": "cyan"},
+        {"word": "ARE NOT IMMUNE TO MISTAKES", "color": "white"}
+      ]
+    },
+    {
+      "scene_id": 10,
+      "chapter_num": 6,
+      "chapter_title": "THE BUSINESS EMPIRE",
+      "type": "stat",
+      "duration": 26.0,
+      "stat_value": "$1,000,000,000",
+      "stat_label": "RETAIL SALES IN JUST THREE DAYS (2013)",
+      "stat_subtext": "Over 230 Million Copies Sold Worldwide to date",
+      "text": [
+        {"word": "$800M ON DAY ONE; ", "color": "gold"},
+        {"word": "$1 BILLION IN 72 HOURS", "color": "cyan"}
+      ]
+    },
+    {
+      "scene_id": 11,
+      "chapter_num": 6,
+      "chapter_title": "THE BUSINESS EMPIRE",
+      "type": "stat",
+      "duration": 24.0,
+      "stat_value": "78% RECURRENT",
+      "stat_label": "TAKE-TWO RECURRENT CONSUMER SPENDING",
+      "stat_subtext": "Fiscal 2026: Shark Cards, DLC & GTA+ Subscriptions",
+      "text": [
+        {"word": "A SALE HAPPENS ONCE; ", "color": "white"},
+        {"word": "ECOSYSTEM REVENUE LASTS FOREVER", "color": "gold"}
+      ]
+    },
+    {
+      "scene_id": 12,
+      "chapter_num": 7,
+      "chapter_title": "LAUNCH DAY: GTA VI",
+      "type": "stat",
+      "duration": 50.0,
+      "stat_value": "$8.2 BILLION",
+      "stat_label": "TAKE-TWO FISCAL 2027 BOOKINGS OUTLOOK",
+      "stat_subtext": "Leonida & Vice City; Trailer 1 hit 90M views in 24 hours (Guinness Record)",
+      "text": [
+        {"word": "THE WORLD DID NOT JUST WAIT. ", "color": "white"},
+        {"word": "THEY PREPARED FOR HISTORY.", "color": "gold"}
       ]
     }
   ]
