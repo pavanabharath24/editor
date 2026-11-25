@@ -1,17 +1,28 @@
 {
-  "title": "Day 1 Quick Showcase (Arthur, Donut & Bars)",
+  "title": "All Rockstar Games & Franchise Grid Showcase",
   "resolution": [1920, 1080],
   "fps": 30,
   "scenes": [
     {
       "chapter_num": 1,
-      "chapter_title": "THE 13-YEAR GAP",
+      "chapter_title": "THE ROCKSTAR EMPIRE",
+      "type": "games_grid",
+      "duration": 5.0,
+      "text": [
+        {"word": "EVERY HIT FRANCHISE: ", "color": "gold"},
+        {"word": "GTA, RED DEAD, BULLY, & MAX PAYNE", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 3,
+      "chapter_title": "THE 3D REVOLUTION",
       "type": "image_hero",
-      "image_asset": "assets/gta5_cover_faded.png",
+      "image_asset": "assets/logo_gtavc.png",
       "duration": 4.0,
       "text": [
-        {"word": "SEPTEMBER 2013: ", "color": "white"},
-        {"word": "GTA V ARRIVES", "color": "gold"}
+        {"word": "VICE CITY: ", "color": "white"},
+        {"word": "THE NEON DECADE ", "color": "gold"},
+        {"word": "THAT DEFINED A GENERATION", "color": "cyan"}
       ]
     },
     {
@@ -36,13 +47,14 @@
       ]
     },
     {
-      "chapter_num": 6,
-      "chapter_title": "THE BUSINESS EMPIRE",
-      "type": "diagram_growth",
-      "duration": 4.5,
+      "chapter_num": 7,
+      "chapter_title": "THE NEXT CHAPTER",
+      "type": "image_hero",
+      "image_asset": "assets/logo_gta6.png",
+      "duration": 5.0,
       "text": [
-        {"word": "$800M DAY ONE; ", "color": "gold"},
-        {"word": "$1 BILLION IN 72 HOURS", "color": "cyan"}
+        {"word": "GRAND THEFT AUTO VI: ", "color": "white"},
+        {"word": "NOVEMBER 19, 2026", "color": "gold"}
       ]
     }
   ]

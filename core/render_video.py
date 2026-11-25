@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 Cash & Crown / Document Video Engine - Video Timeline Builder & Renderer
-Composes rich documentary scenes with:
-- Original game covers, characters & official press art (Rockstar Games, GTA V, Vice City, RDR2, etc.)
-- Dynamic financial infographic diagrams (Donut charts, revenue bar charts, risk matrices)
-- Smooth floating Ken Burns camera moves & drop-shadows
-- Live real-time dashboard progress tracking (.progress.json)
+Dynamic documentary scenes featuring:
+- Official Rockstar Games logos & game covers (GTA 3, Vice City, San Andreas, GTA IV, GTA V, GTA VI, RDR2, Bully, Max Payne)
+- Logo Grid Gallery showcasing all Rockstar franchise logos simultaneously
+- Animated financial infographics (78% Recurrent Donut, $1B Launch Revenue Bars, 3-Risk Matrix)
+- Dynamic camera zooms and smooth alpha-faded subject overlays
 """
 
 import os
@@ -68,6 +68,41 @@ def update_progress(progress_file, status, percent, current_scene, total_scenes,
         pass
 
 
+def render_logo_grid(canvas, project_dir, progress=1.0):
+    """Renders a dynamic showcase grid of all Rockstar created game covers."""
+    assets_dir = os.path.join(project_dir, "assets")
+    covers = [
+        "gta3_hd.jpg",
+        "gta_vice_city_hd.jpg",
+        "gta_san_andreas_hd.jpg",
+        "gta4_cover.jpg",
+        "gta5_cover_hd.jpg",
+        "rdr2_arthur.jpg",
+        "bully_hd.jpg",
+        "maxpayne3_hd.jpg"
+    ]
+    
+    # 2 rows of 4 cards
+    card_w = 340
+    card_h = 330
+    start_x = 220
+    start_y = 170
+    gap_x = 55
+    gap_y = 30
+
+    for i, cover_name in enumerate(covers):
+        row = i // 4
+        col = i % 4
+        cx = start_x + col * (card_w + gap_x)
+        cy = start_y + row * (card_h + gap_y)
+
+        path = os.path.join(assets_dir, cover_name)
+        if os.path.exists(path):
+            img = Image.open(path).convert("RGBA")
+            img = img.resize((card_w, card_h), Image.Resampling.LANCZOS)
+            canvas.paste(img, (cx, cy))
+
+
 def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
     timeline_file = os.path.join(project_dir, "timeline.json")
     if not os.path.exists(timeline_file):
@@ -105,7 +140,7 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         scene_frames = int(duration * fps)
         chapter_num = scene.get("chapter_num", 1)
         chapter_title = scene.get("chapter_title", "Cash & Crown")
-        scene_type = scene.get("type", "stat") # stat, image_hero, diagram_donut, diagram_growth, diagram_risk
+        scene_type = scene.get("type", "stat")
 
         print(f"    -> Rendering Scene {scene_idx+1}/{len(scenes)}: [{scene_type}] {chapter_title} ({duration}s, {scene_frames} frames)")
 
@@ -126,40 +161,43 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
             t = frame_idx / float(max(1, scene_frames - 1))
             canvas = create_blank_canvas(width, height, grain=True)
             
-            # Chapter indicator badge
             renderer.render_chapter_badge(canvas, chapter_num, chapter_title)
 
-            # 1. Image Hero / Character Art scene
-            if scene_type == "image_hero" and os.path.exists(asset_path):
-                # Floating pan & subtle zoom
-                zoom = 0.55 + 0.04 * t
-                pan_y = -100 - 10 * t
+            # Scene Type 1: Logo / Game Cover Grid
+            if scene_type == "games_grid":
+                render_logo_grid(canvas, project_dir, progress=t)
+
+            # Scene Type 2: Single Hero Art / Character
+            elif scene_type == "image_hero" and os.path.exists(asset_path):
+                zoom = 0.52 + 0.04 * t
+                pan_y = -90 - 10 * t
                 renderer.composite_cutout(canvas, asset_path, scale=zoom, pan_y=pan_y)
 
-            # 2. Diagrams
+            # Scene Type 3: Donut chart
             elif scene_type == "diagram_donut":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_donut_chart(percent=78, progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
+            # Scene Type 4: Growth bars
             elif scene_type == "diagram_growth":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_growth_bars(day1=800, day3=1000, progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
+            # Scene Type 5: Risk matrix
             elif scene_type == "diagram_risk":
                 prog = ease_out_cubic(min(1.0, t * 1.8))
                 diag = create_risk_matrix(progress=prog)
                 canvas.paste(diag, ((width - diag.width) // 2, (height - diag.height) // 2 - 80), mask=diag)
 
-            # 3. Standard Stat Card
+            # Scene Type 6: Stat Card
             elif scene_type == "stat":
                 card_alpha = min(1.0, t * 3.0)
                 renderer.render_stat_card(canvas, stat_value, stat_label, subtext=stat_sub, alpha=card_alpha)
 
             # Kinetic text (lower third)
             if text_segments:
-                y_offset = int(220 - 15 * ease_out_cubic(min(1.0, t * 2.0)))
                 renderer.render_kinetic_text(canvas, text_segments, y_pos=880, font_size=42)
 
             frame_np = cv2.cvtColor(np.array(canvas), cv2.COLOR_RGB2BGR)
