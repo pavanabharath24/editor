@@ -1,5 +1,5 @@
 {
-  "title": "All Rockstar Games, Franchise Grid & Corner Gameplay PIP Showcase",
+  "title": "All Rockstar Games, 4:3 Center Gameplay & Franchise Grid Showcase",
   "resolution": [1920, 1080],
   "fps": 30,
   "scenes": [
@@ -16,32 +16,65 @@
     {
       "chapter_num": 3,
       "chapter_title": "THE 3D REVOLUTION",
-      "type": "image_hero",
-      "image_asset": "assets/logo_gtavc.png",
-      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
-      "pip_logo": "assets/logo_gtavc.png",
-      "duration": 4.5,
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta_vice_city_clean.mp4",
+      "gameplay_logo": "assets/logo_gtavc.png",
+      "duration": 5.0,
       "text": [
-        {"word": "VICE CITY: ", "color": "white"},
-        {"word": "THE NEON DECADE ", "color": "gold"},
-        {"word": "THAT DEFINED A GENERATION", "color": "cyan"}
+        {"word": "VICE CITY (2002): ", "color": "gold"},
+        {"word": "THE NEON 3D MASTERPIECE", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 3,
+      "chapter_title": "THE 3D REVOLUTION",
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta_san_andreas_clean.mp4",
+      "gameplay_logo": "assets/logo_gtasa.png",
+      "duration": 5.0,
+      "text": [
+        {"word": "SAN ANDREAS (2004): ", "color": "gold"},
+        {"word": "AN ENTIRE LIVING STATE", "color": "cyan"}
       ]
     },
     {
       "chapter_num": 4,
-      "chapter_title": "BEYOND GTA",
-      "type": "image_hero",
-      "image_asset": "assets/rdr2_arthur_faded.png",
-      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
-      "pip_logo": "assets/rockstar_logo.png",
-      "duration": 4.5,
+      "chapter_title": "THE HD ERA",
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta4_clean.mp4",
+      "gameplay_logo": "assets/logo_gta4.png",
+      "duration": 5.0,
       "text": [
-        {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
-        {"word": "$725M IN 3 DAYS", "color": "cyan"}
+        {"word": "GTA IV (2008): ", "color": "gold"},
+        {"word": "LIBERTY CITY'S GRITTY PHYSICS", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 5,
+      "chapter_title": "THE $8B PHENOMENON",
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta5_clean.mp4",
+      "gameplay_logo": "assets/logo_gta_online.png",
+      "duration": 5.0,
+      "text": [
+        {"word": "GTA V (2013): ", "color": "gold"},
+        {"word": "THE HIGHEST-GROSSING ENTERTAINMENT PRODUCT", "color": "cyan"}
       ]
     },
     {
       "chapter_num": 6,
+      "chapter_title": "BEYOND GTA",
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/rdr2_clean.mp4",
+      "gameplay_logo": "assets/logo_rdr2.png",
+      "duration": 5.0,
+      "text": [
+        {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
+        {"word": "$725M RETAIL IN 3 DAYS (85M COPIES)", "color": "cyan"}
+      ]
+    },
+    {
+      "chapter_num": 7,
       "chapter_title": "THE BUSINESS EMPIRE",
       "type": "diagram_donut",
       "duration": 4.5,
@@ -51,12 +84,10 @@
       ]
     },
     {
-      "chapter_num": 7,
+      "chapter_num": 8,
       "chapter_title": "THE NEXT CHAPTER",
       "type": "image_hero",
       "image_asset": "assets/logo_gta6.png",
-      "pip_video": "assets/clips/gta_gameplay_sample.mp4",
-      "pip_logo": "assets/logo_gta6.png",
       "duration": 5.0,
       "text": [
         {"word": "GRAND THEFT AUTO VI: ", "color": "white"},

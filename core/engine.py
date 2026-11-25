@@ -223,3 +223,46 @@ def render_pip_video(canvas, video_frame, logo_path=None, size=(460, 260), pos=(
         logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
         # Position at bottom right of PIP
         canvas.paste(logo, (x + w - logo_w - 12, y + h - logo_h - 12), mask=logo)
+
+def render_center_retro_clip(canvas, video_frame, logo_path=None, size=(960, 720), pos=None, border_color=(212, 175, 55)):
+    """
+    Renders 4:3 aspect ratio gameplay clip in the center of the 16:9 canvas with:
+    - Elegant rounded border
+    - Associated game logo floating on the top-left corner of the 4:3 clip (overlapping the border)
+    """
+    cw, ch = size
+    if pos is None:
+        # Perfectly centered horizontally, slightly raised to give room for bottom captions
+        cx = (canvas.width - cw) // 2
+        cy = (canvas.height - ch) // 2 - 50
+    else:
+        cx, cy = pos
+
+    # Resize frame to 4:3
+    clip_img = Image.fromarray(video_frame).convert("RGBA").resize((cw, ch), Image.Resampling.LANCZOS)
+
+    # Rounded clip mask
+    mask = Image.new("L", (cw, ch), 0)
+    draw_mask = ImageDraw.Draw(mask)
+    draw_mask.rounded_rectangle((0, 0, cw, ch), radius=20, fill=255)
+
+    # Elegant outer border
+    border = Image.new("RGBA", (cw + 12, ch + 12), (0, 0, 0, 0))
+    draw_b = ImageDraw.Draw(border)
+    draw_b.rounded_rectangle((0, 0, cw + 11, ch + 11), radius=24, fill=None, outline=(*border_color, 255), width=4)
+
+    # Paste border and video
+    canvas.paste(border, (cx - 6, cy - 6), mask=border)
+    canvas.paste(clip_img, (cx, cy), mask=mask)
+
+    # Game logo on the top-left corner border of the 4:3 clip
+    if logo_path and os.path.exists(logo_path):
+        logo = Image.open(logo_path).convert("RGBA")
+        logo_w = 260
+        logo_h = int(logo.height * (logo_w / float(logo.width)))
+        logo = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
+        
+        # Position logo sitting across top-left corner
+        lx = cx - 25
+        ly = cy - (logo_h // 2) - 10
+        canvas.paste(logo, (lx, ly), mask=logo)

@@ -2,7 +2,8 @@
 """
 Cash & Crown / Document Video Engine - Video Timeline Builder & Renderer
 Dynamic documentary scenes featuring:
-- Live Picture-in-Picture (PIP) gameplay video in upper-right corner with game logo
+- Center 4:3 retro gameplay clips with stylish borders and game logos floating on the top-left border
+- Live PIP corner gameplay options
 - Franchise gallery grid showcasing all Rockstar titles
 - Animated financial infographics (78% Recurrent Donut, $1B Launch Revenue Bars, 3-Risk Matrix)
 - Dynamic camera zooms and smooth alpha-faded subject overlays
@@ -19,7 +20,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from engine import SceneRenderer, VideoStyle, create_blank_canvas, ease_out_cubic, smoothstep, render_pip_video
+from engine import SceneRenderer, VideoStyle, create_blank_canvas, ease_out_cubic, smoothstep, render_pip_video, render_center_retro_clip
 from diagrams import create_donut_chart, create_growth_bars, create_risk_matrix
 
 
@@ -154,15 +155,15 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
         asset_rel = scene.get("image_asset", "")
         asset_path = os.path.join(project_dir, asset_rel) if asset_rel else ""
 
-        # PIP video setup if present
-        pip_video_rel = scene.get("pip_video", "")
-        pip_logo_rel = scene.get("pip_logo", "")
-        pip_video_path = os.path.join(project_dir, pip_video_rel) if pip_video_rel else ""
-        pip_logo_path = os.path.join(project_dir, pip_logo_rel) if pip_logo_rel else ""
+        # Gameplay video setup (center or PIP)
+        clip_rel = scene.get("gameplay_clip", "") or scene.get("pip_video", "")
+        clip_logo_rel = scene.get("gameplay_logo", "") or scene.get("pip_logo", "")
+        clip_path = os.path.join(project_dir, clip_rel) if clip_rel else ""
+        clip_logo_path = os.path.join(project_dir, clip_logo_rel) if clip_logo_rel else ""
 
         cap = None
-        if pip_video_path and os.path.exists(pip_video_path):
-            cap = cv2.VideoCapture(pip_video_path)
+        if clip_path and os.path.exists(clip_path):
+            cap = cv2.VideoCapture(clip_path)
 
         for frame_idx in range(scene_frames):
             t = frame_idx / float(max(1, scene_frames - 1))
@@ -173,6 +174,15 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
             # Scene Types
             if scene_type == "games_grid":
                 render_logo_grid(canvas, project_dir, progress=t)
+
+            elif scene_type == "gameplay_center" and cap and cap.isOpened():
+                ret, video_frame = cap.read()
+                if not ret:
+                    cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                    ret, video_frame = cap.read()
+                if ret:
+                    frame_rgb = cv2.cvtColor(video_frame, cv2.COLOR_BGR2RGB)
+                    render_center_retro_clip(canvas, frame_rgb, logo_path=clip_logo_path)
 
             elif scene_type == "image_hero" and os.path.exists(asset_path):
                 zoom = 0.50 + 0.04 * t
@@ -198,12 +208,12 @@ def render_timeline(project_dir, output_path, resolution=(1920, 1080), fps=30):
                 card_alpha = min(1.0, t * 3.0)
                 renderer.render_stat_card(canvas, stat_value, stat_label, subtext=stat_sub, alpha=card_alpha)
 
-            # Read next frame of PIP video if enabled
-            if cap and cap.isOpened():
+            # Check if PIP enabled on other scenes
+            if scene_type != "gameplay_center" and cap and cap.isOpened():
                 ret, pip_frame = cap.read()
                 if ret:
                     pip_rgb = cv2.cvtColor(pip_frame, cv2.COLOR_BGR2RGB)
-                    render_pip_video(canvas, pip_rgb, logo_path=pip_logo_path)
+                    render_pip_video(canvas, pip_rgb, logo_path=clip_logo_path)
 
             if text_segments:
                 renderer.render_kinetic_text(canvas, text_segments, y_pos=880, font_size=42)

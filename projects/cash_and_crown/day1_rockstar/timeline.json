@@ -8,8 +8,9 @@
       "scene_id": 1,
       "chapter_num": 1,
       "chapter_title": "THE 13-YEAR GAP",
-      "type": "image_hero",
-      "image_asset": "assets/gta5_cover_faded.png",
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta5_clean.mp4",
+      "gameplay_logo": "assets/logo_gta_online.png",
       "duration": 12.0,
       "text": [
         {"word": "SEPTEMBER 2013: ", "color": "white"},
@@ -61,33 +62,36 @@
       "scene_id": 5,
       "chapter_num": 3,
       "chapter_title": "THE GTA EVOLUTION",
-      "type": "image_hero",
-      "image_asset": "assets/gta_vice_city_hd.jpg",
-      "duration": 30.0,
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta_vice_city_clean.mp4",
+      "gameplay_logo": "assets/logo_gtavc.png",
+      "duration": 15.0,
       "text": [
-        {"word": "VICE CITY & SAN ANDREAS: ", "color": "gold"},
-        {"word": "THE OPEN-WORLD REVOLUTION", "color": "cyan"}
+        {"word": "VICE CITY (2002): ", "color": "gold"},
+        {"word": "THE NEON 3D MASTERPIECE", "color": "cyan"}
       ]
     },
     {
       "scene_id": 6,
       "chapter_num": 3,
       "chapter_title": "THE GTA EVOLUTION",
-      "type": "image_hero",
-      "image_asset": "assets/gta_san_andreas_hd.jpg",
-      "duration": 22.0,
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/gta_san_andreas_clean.mp4",
+      "gameplay_logo": "assets/logo_gtasa.png",
+      "duration": 15.0,
       "text": [
-        {"word": "EACH TITLE GROWS BIGGER, ", "color": "white"},
-        {"word": "AND THE GAPS GROW WIDER", "color": "gold"}
+        {"word": "SAN ANDREAS (2004): ", "color": "gold"},
+        {"word": "AN ENTIRE LIVING STATE", "color": "cyan"}
       ]
     },
     {
       "scene_id": 7,
       "chapter_num": 4,
       "chapter_title": "BEYOND GTA",
-      "type": "image_hero",
-      "image_asset": "assets/rdr2_arthur_faded.png",
-      "duration": 34.0,
+      "type": "gameplay_center",
+      "gameplay_clip": "assets/clips/rdr2_clean.mp4",
+      "gameplay_logo": "assets/logo_rdr2.png",
+      "duration": 20.0,
       "text": [
         {"word": "RED DEAD REDEMPTION 2: ", "color": "gold"},
         {"word": "$725M IN 3 DAYS ", "color": "cyan"},
